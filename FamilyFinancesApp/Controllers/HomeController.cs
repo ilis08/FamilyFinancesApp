@@ -1,4 +1,4 @@
-﻿using FamilyFinancesApp.Models;
+﻿using FamilyFinancesApp.Data.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
