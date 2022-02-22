@@ -1,4 +1,4 @@
-namespace FamilyFinancesApp.Models
+﻿namespace FamilyFinancesApp.Data.Models
 {
     public class ErrorViewModel
     {
