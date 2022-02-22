@@ -9,6 +9,6 @@ namespace FamilyFinancesApp.Data.Models
         public virtual decimal Amount { get; set; }
 
         [Required]
-        public virtual DateTime SpendingDate { get; set; }
+        public virtual DateTime OperationDate { get; set; }
     }
 }

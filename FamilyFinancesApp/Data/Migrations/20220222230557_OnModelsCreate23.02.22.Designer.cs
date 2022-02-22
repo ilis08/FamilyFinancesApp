@@ -4,6 +4,7 @@ using FamilyFinancesApp.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FamilyFinancesApp.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220222230557_OnModelsCreate23.02.22")]
+    partial class OnModelsCreate230222
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -36,7 +38,7 @@ namespace FamilyFinancesApp.Data.Migrations
                     b.Property<int>("IncomeTypeId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("OperationDate")
+                    b.Property<DateTime>("SpendingDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
@@ -74,7 +76,7 @@ namespace FamilyFinancesApp.Data.Migrations
                     b.Property<decimal>("Amount")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<DateTime>("OperationDate")
+                    b.Property<DateTime>("SpendingDate")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("SpendingTypeId")
