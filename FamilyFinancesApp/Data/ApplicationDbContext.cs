@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using FamilyFinancesApp.Data.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace FamilyFinancesApp.Data
@@ -9,5 +10,11 @@ namespace FamilyFinancesApp.Data
             : base(options)
         {
         }
+
+        public DbSet<UserInfo>? UsersInfo { get; set; }
+        public DbSet<Income>? Incomes { get; set; }
+        public DbSet<IncomeType>? IncomeTypes { get; set;}
+        public DbSet<Spending>? Spendings { get; set; }
+        public DbSet<SpendingType>? SpendingTypes { get; set; }
     }
 }
