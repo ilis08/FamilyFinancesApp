@@ -9,10 +9,16 @@ namespace FamilyFinancesApp.Data.Models
 
         [Required]
         [Range(0, double.MaxValue)]
-        public decimal Money { get; set; }
+        public decimal Money { get; set; } = decimal.Zero;
 
-        public Guid UserId { get; set; }
+        [Required]
+        [StringLength(450)]
+        public string? UserId { get; set; }
 
         public IdentityUser? User;
+
+        public IEnumerable<IncomeType>? IncomeTypes { get;set; }
+
+        public IEnumerable<SpendingType>? SpendingTypes { get; set; }
     }
 }

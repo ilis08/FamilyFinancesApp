@@ -5,6 +5,7 @@ namespace FamilyFinancesApp.Data.Models
 {
     public class Spending : Operation
     {
+        [Required]
         public int SpendingTypeId { get; set; }
 
         public SpendingType? SpendingType { get; set; }

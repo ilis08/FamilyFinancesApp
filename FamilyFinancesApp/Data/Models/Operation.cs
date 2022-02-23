@@ -6,9 +6,11 @@ namespace FamilyFinancesApp.Data.Models
     {
         public virtual int Id { get; set; }
 
+        [Required]
         public virtual decimal Amount { get; set; }
 
         [Required]
         public virtual DateTime OperationDate { get; set; }
+
     }
 }
