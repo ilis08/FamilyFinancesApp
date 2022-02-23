@@ -4,6 +4,7 @@ using FamilyFinancesApp.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FamilyFinancesApp.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220223153439_OnDatabaseUpdate23.02.22")]
+    partial class OnDatabaseUpdate230222
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -39,9 +41,14 @@ namespace FamilyFinancesApp.Data.Migrations
                     b.Property<DateTime>("OperationDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("UserInfoId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("IncomeTypeId");
+
+                    b.HasIndex("UserInfoId");
 
                     b.ToTable("Incomes");
                 });
@@ -85,9 +92,14 @@ namespace FamilyFinancesApp.Data.Migrations
                     b.Property<int>("SpendingTypeId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("UserInfoId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("SpendingTypeId");
+
+                    b.HasIndex("UserInfoId");
 
                     b.ToTable("Spendings");
                 });
@@ -345,6 +357,10 @@ namespace FamilyFinancesApp.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("FamilyFinancesApp.Data.Models.UserInfo", null)
+                        .WithMany("Incomes")
+                        .HasForeignKey("UserInfoId");
+
                     b.Navigation("IncomeType");
                 });
 
@@ -366,6 +382,10 @@ namespace FamilyFinancesApp.Data.Migrations
                         .HasForeignKey("SpendingTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("FamilyFinancesApp.Data.Models.UserInfo", null)
+                        .WithMany("Spendings")
+                        .HasForeignKey("UserInfoId");
 
                     b.Navigation("SpendingType");
                 });
@@ -446,7 +466,11 @@ namespace FamilyFinancesApp.Data.Migrations
                 {
                     b.Navigation("IncomeTypes");
 
+                    b.Navigation("Incomes");
+
                     b.Navigation("SpendingTypes");
+
+                    b.Navigation("Spendings");
                 });
 #pragma warning restore 612, 618
         }

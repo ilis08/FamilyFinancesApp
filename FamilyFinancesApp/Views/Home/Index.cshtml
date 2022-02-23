@@ -1,8 +1,29 @@
-﻿@{
+﻿@model UserInfo
+@using System.Globalization;
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Welcome @User.Identity.Name</h1>
+
+    <h3>Your budget is @Model.Money.ToString("c", CultureInfo.CreateSpecificCulture("en-US"))</h3>
+
+    <br />
+
+    <div class="row">
+        <div class="col-4">
+
+        </div>
+        <div class="col-2">
+            <a class="btn btn-success" asp-controller="Income" asp-action="Index" asp-route-userInfoId="@Model.Id">Manage incomes</a>
+        </div>
+        <div class="col-2">
+            <a class="btn btn-primary" asp-controller="Spending" asp-action="Index" asp-route-userInfoId="@Model.Id">Manage spendings</a>
+        </div>
+        <div class="col-4">
+
+        </div>
+    </div>
 </div>

@@ -4,6 +4,10 @@ namespace FamilyFinancesApp.Repository.UserInfoRep
 {
     public interface IUserInfoRepository
     {
-        Task<UserInfo> GetUserInfoAsync();
+        Task<UserInfo> GetUserInfoAsync(string userId);
+
+        Task DeleteUserInfoAsync(string userId);
+
+        Task<UserInfo> CreateUserInfoAsync(string userId);
     }
 }

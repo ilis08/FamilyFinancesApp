@@ -1,10 +1,16 @@
-﻿namespace FamilyFinancesApp.UnitOfWorkFolder
+﻿using FamilyFinancesApp.Repository.IncomeRep;
+using FamilyFinancesApp.Repository.SpendingRep;
+using FamilyFinancesApp.Repository.UserInfoRep;
+
+namespace FamilyFinancesApp.UnitOfWorkFolder
 {
 
     public interface IUnitOfWork : IDisposable
     {
-        Task SaveAsync();
-        
+        public IncomeRepository Income { get; }
+        public SpendingRepository Spending { get; }
+        public UserInfoRepository UserInfo { get; }
 
+        Task SaveAsync(); 
     }
 }

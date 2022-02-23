@@ -20,7 +20,7 @@ namespace FamilyFinancesApp.UnitOfWorkFolder
             get
             {
                 if (incomeRepository == null)
-                    incomeRepository = new IncomeRepository(context);
+                    incomeRepository = new IncomeRepository(context, this);
                 return incomeRepository;
             }
         }
@@ -30,7 +30,7 @@ namespace FamilyFinancesApp.UnitOfWorkFolder
             get
             {
                 if(spendingRepository == null)
-                    spendingRepository = new SpendingRepository(context);
+                    spendingRepository = new SpendingRepository(context, this);
                 return spendingRepository;
             }
         }
@@ -39,7 +39,7 @@ namespace FamilyFinancesApp.UnitOfWorkFolder
             get
             {
                 if(userInfoRepository == null)
-                    userInfoRepository = new UserInfoRepository(context);
+                    userInfoRepository = new UserInfoRepository(context, this);
                 return userInfoRepository;
             }
         }

@@ -1,10 +1,12 @@
 ﻿using FamilyFinancesApp.Data;
+using FamilyFinancesApp.Data.Models;
+using FamilyFinancesApp.UnitOfWorkFolder;
 
 namespace FamilyFinancesApp.Repository.IncomeRep
 {
-    public class IncomeRepository : BaseRepository<IncomeRepository>, IIncomeRepository
+    public class IncomeRepository : BaseRepository<Income>, IIncomeRepository
     {
-        public IncomeRepository(ApplicationDbContext _repositoryContext) : base(_repositoryContext)
+        public IncomeRepository(ApplicationDbContext repositoryContext, IUnitOfWork unitOfWork) : base(repositoryContext, unitOfWork)
         {
         }
     }
