@@ -8,7 +8,7 @@ using System.Security.Claims;
 
 namespace FamilyFinancesApp.Controllers
 {
-    [Authorize]
+   
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -20,20 +20,20 @@ namespace FamilyFinancesApp.Controllers
             _unitOfWork = unitOfWork;
         }
 
-
+        [Authorize]
         public async Task<IActionResult> Index()
         {
             var userInfo = await _unitOfWork.UserInfo.GetUserInfoAsync(User.FindFirstValue(ClaimTypes.NameIdentifier));
 
             return View(userInfo);
         }
-
+        [Authorize]
         public async Task<IActionResult> ManageSpendings()
         {
             ViewBag.UserId = await _unitOfWork.UserInfo.GetUserInfoAsync(User.FindFirstValue(ClaimTypes.NameIdentifier));
             return View();
         }
-
+        [Authorize]
         public async Task<IActionResult> ManageIncomes()
         {
             ViewBag.UserId = await _unitOfWork.UserInfo.GetUserInfoAsync(User.FindFirstValue(ClaimTypes.NameIdentifier));
