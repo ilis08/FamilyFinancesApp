@@ -1,6 +1,17 @@
-﻿namespace FamilyFinancesApp.Repository.IncomeRep
+﻿using FamilyFinancesApp.Data.Models;
+
+namespace FamilyFinancesApp.Repository.IncomeRep
 {
     public interface IIncomeRepository
     {
+        Task<Income> GetIncomeByID (int incomeID);
+
+        Task<IEnumerable<Income>> GetIncomesByUserInfoID(int userInfoID);
+
+        Task<Income> CreateIncomes(Income income);
+        Task<Income> UpdateIncome(Income income);
+
+        Task DeleteIncome(int income);
+      
     }
 }
