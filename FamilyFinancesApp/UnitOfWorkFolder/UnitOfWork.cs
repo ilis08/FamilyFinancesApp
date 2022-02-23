@@ -1,7 +1,9 @@
 ﻿using FamilyFinancesApp.Data;
 using FamilyFinancesApp.Repository;
 using FamilyFinancesApp.Repository.IncomeRep;
+using FamilyFinancesApp.Repository.IncomeTypeRep;
 using FamilyFinancesApp.Repository.SpendingRep;
+using FamilyFinancesApp.Repository.SpendingTypeRep;
 using FamilyFinancesApp.Repository.UserInfoRep;
 
 namespace FamilyFinancesApp.UnitOfWorkFolder
@@ -14,6 +16,8 @@ namespace FamilyFinancesApp.UnitOfWorkFolder
         private IncomeRepository? incomeRepository;
         private SpendingRepository? spendingRepository;
         private UserInfoRepository? userInfoRepository;
+        private IncomeTypeRepository? incomeTypeRepository;
+        private SpendingTypeRepository? spendingTypeRepository;
 
         public IncomeRepository Income
         {
@@ -44,6 +48,25 @@ namespace FamilyFinancesApp.UnitOfWorkFolder
             }
         }
 
+        public SpendingTypeRepository SpendingType
+        {
+            get
+            {
+                if (spendingTypeRepository == null)
+                    spendingTypeRepository = new SpendingTypeRepository(context, this);
+                return spendingTypeRepository;
+            }
+        }
+
+        public IncomeTypeRepository IncomeType
+        {
+            get
+            {
+                if (incomeTypeRepository == null)
+                    incomeTypeRepository = new IncomeTypeRepository(context, this);
+                return incomeTypeRepository;
+            }
+        }
 
 
         public UnitOfWork(ApplicationDbContext _context)
