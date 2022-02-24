@@ -1,21 +1,47 @@
-﻿
+﻿@model IEnumerable<FamilyFinancesApp.Data.Models.Spending>
+
 @{
-    ViewData["Title"] = "Spending Page";
+    ViewData["Title"] = "Index";
 }
 
-<div class="text-center">
-    <div class="row">
-        <div class="col-4">
+<h1>Index</h1>
 
-        </div>
-        <div class="col-2">
-            <a class="btn btn-success" asp-action="GetSpendingTypes" asp-route-userInfoId="@ViewBag.UserInfoId">Manage spendings</a>
-        </div>
-        <div class="col-2">
-            <a class="btn btn-primary" asp-action="GetSpendings" asp-route-userInfoId="@ViewBag.UserInfoId">Manage spending types</a>
-        </div>
-        <div class="col-4">
-
-        </div>
-    </div>
-</div>
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.SpendingType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Amount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OperationDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SpendingType.TypeName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Amount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OperationDate)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
