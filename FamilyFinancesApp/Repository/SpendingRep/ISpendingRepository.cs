@@ -8,6 +8,8 @@ namespace FamilyFinancesApp.Repository.SpendingRep
 
         Task<IEnumerable<Spending>> GetAllSpendingsAsync(int spendingTypeId);
 
+        Task<IEnumerable<Spending>> GetAllSpendingsBySpendingType(int spendingTypeId);
+
         Task<Spending> CreateSpendingAsync(Spending spending);
 
         Task<Spending> UpdateSpendingAsync(Spending spending);

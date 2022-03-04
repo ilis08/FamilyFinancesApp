@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Security.Claims;
+using Google.DataTable.Net.Wrapper.Extension;
 
 namespace FamilyFinancesApp.Controllers
 {
@@ -81,6 +82,12 @@ namespace FamilyFinancesApp.Controllers
         {
             var spending = await _unitOfWork.Spending.GetSpendingAsync(id);
 
+            var userInfo = await _unitOfWork.UserInfo.GetUserInfoAsync(User.FindFirstValue(ClaimTypes.NameIdentifier));
+
+            var spendingTypes = await _unitOfWork.SpendingType.GetAllSpendingTypesAsync(userInfo.Id);
+
+            ViewBag.SpendingTypes = new SelectList(spendingTypes, "Id", "TypeName");
+
             return View(spending);
         }
 
@@ -126,6 +133,27 @@ namespace FamilyFinancesApp.Controllers
             }
 
             return Json(true); 
+        }
+
+        public async Task<IActionResult> GetSpendingChart()
+        {
+            var userInfo = await _unitOfWork.UserInfo.GetUserInfoAsync(User.FindFirstValue(ClaimTypes.NameIdentifier));
+
+            var spendingTypes = await _unitOfWork.SpendingType.GetAllSpendingTypesAsync(userInfo.Id);
+
+            var spendingTypeChart = new List<SpendingTypeChart>();
+
+            foreach (var item in spendingTypes)
+            {
+                var spendings = await _unitOfWork.Spending.GetAllSpendingsBySpendingType(item.Id);
+
+                if (spendings is not null)
+                {
+                    spendingTypeChart.Add(new SpendingTypeChart(item.TypeName, spendings.Count()));
+                }
+            }
+
+            return Json(new {JsonList = spendingTypeChart});
         }
     }
 }
