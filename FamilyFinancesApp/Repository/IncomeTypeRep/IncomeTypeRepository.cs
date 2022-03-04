@@ -51,12 +51,13 @@ namespace FamilyFinancesApp.Repository.IncomeTypeRep
         public async Task<IEnumerable<IncomeType>> GetIncomeTypes(int userInfoId)
         {
             var incomeType = await FindByCondition(x => x.UserInfoId == userInfoId).ToListAsync();
-            if (incomeType is null)
+            if (incomeType is not null)
             {
-                throw new Exception();
+                return incomeType;
             }
 
-            return incomeType;
+         throw new Exception();
+            
         }
 
     }

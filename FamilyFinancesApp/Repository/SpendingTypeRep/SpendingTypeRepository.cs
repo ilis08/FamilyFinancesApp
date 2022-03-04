@@ -34,7 +34,7 @@ namespace FamilyFinancesApp.Repository.SpendingTypeRep
             await unitOfWork.SaveAsync();
         }
 
-        public async Task<IEnumerable<SpendingType>> GetAllSpendingTypesAsync(int userInfoId)
+        public async Task<IEnumerable<SpendingType>> GetIncomeTypesAsync(int userInfoId)
         {
             var spendingTypes = await FindByCondition(x => x.UserInfoId == userInfoId).ToListAsync();
 
