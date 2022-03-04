@@ -25,7 +25,9 @@
             </div>
             <div class="form-group">
                 <label asp-for="SpendingTypeId" class="control-label"></label>
-                <select asp-for="SpendingTypeId" class="form-control" asp-items="ViewBag.SpendingTypeId"></select>
+                <select asp-for="SpendingTypeId" asp-items="@ViewBag.SpendingTypes" class="form-control">
+                    <option selected>Please, select spending type</option>
+                </select>
                 <span asp-validation-for="SpendingTypeId" class="text-danger"></span>
             </div>
             <div class="form-group">
