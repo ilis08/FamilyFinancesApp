@@ -2,7 +2,7 @@
 {
     public class SpendingTypeChart
     {
-        public SpendingTypeChart(string spendingTypeName, int spendingCount)
+        public SpendingTypeChart(string spendingTypeName, decimal spendingCount)
         {
             SpendingTypeName = spendingTypeName;
             SpendingCount = spendingCount;
@@ -10,6 +10,6 @@
 
         public string SpendingTypeName { get; set; }
 
-        public int SpendingCount { get; set; }
+        public decimal SpendingCount { get; set; }
     }
 }

@@ -146,10 +146,16 @@ namespace FamilyFinancesApp.Controllers
             foreach (var item in spendingTypes)
             {
                 var spendings = await _unitOfWork.Spending.GetAllSpendingsBySpendingType(item.Id);
+                decimal amount = 0;
+
+                foreach (var spending in spendings)
+                {
+                    amount += spending.Amount;
+                }
 
                 if (spendings is not null)
                 {
-                    spendingTypeChart.Add(new SpendingTypeChart(item.TypeName, spendings.Count()));
+                    spendingTypeChart.Add(new SpendingTypeChart(item.TypeName, amount));
                 }
             }
 
