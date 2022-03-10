@@ -81,6 +81,12 @@ namespace FamilyFinancesApp.Controllers
         {
             var income = await _unitOfWork.Income.GetIncomeByID(id);
 
+            var userInfo = await _unitOfWork.UserInfo.GetUserInfoAsync(User.FindFirstValue(ClaimTypes.NameIdentifier));
+
+            var incomeTypes = await _unitOfWork.IncomeType.GetIncomeTypes(userInfo.Id);
+
+            ViewBag.IncomeTypes = new SelectList(incomeTypes, "Id", "TypeName");
+
             return View(income);
         }
 
@@ -115,6 +121,29 @@ namespace FamilyFinancesApp.Controllers
             return RedirectToAction("Index");
         }
 
-        
+
+        public async Task<IActionResult> GetIncomeChart()
+        {
+            var userInfo = await _unitOfWork.UserInfo.GetUserInfoAsync(User.FindFirstValue(ClaimTypes.NameIdentifier));
+
+            var incomeTypes = await _unitOfWork.IncomeType.GetIncomeTypes(userInfo.Id);
+
+            var incomeTypeChart = new List<IncomeTypeChart>();
+
+            foreach (var item in incomeTypes)
+            {
+                var incomes = await _unitOfWork.Income.GetAllIncomesByType(item.Id);
+
+                if (incomes is not null)
+                {
+                    incomeTypeChart.Add(new IncomeTypeChart(item.TypeName, incomes.Count()));
+                }
+            }
+
+            return Json(new { JsonList = incomeTypeChart });
+        }
+
+
+
     }
 }

@@ -12,6 +12,8 @@ namespace FamilyFinancesApp.Repository.IncomeRep
         Task<Income> UpdateIncome(Income income);
 
         Task DeleteIncome(int id);
-      
+
+        Task<IEnumerable<Income>> GetAllIncomesByType(int incomeTypeId);
+
     }
 }

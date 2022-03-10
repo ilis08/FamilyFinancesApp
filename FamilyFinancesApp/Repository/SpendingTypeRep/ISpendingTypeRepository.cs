@@ -6,7 +6,7 @@ namespace FamilyFinancesApp.Repository.SpendingTypeRep
     {
         Task<SpendingType> GetSpendingTypeAsync(int id);
 
-        Task<IEnumerable<SpendingType>> GetIncomeTypesAsync(int userInfoId);
+        Task<IEnumerable<SpendingType>> GetAllSpendingTypesAsync(int userInfoId);
 
         Task<SpendingType> CreateSpendingTypeAsync(SpendingType spendingType, int userInfoId);
 

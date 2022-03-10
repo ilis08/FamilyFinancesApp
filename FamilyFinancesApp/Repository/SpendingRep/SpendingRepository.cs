@@ -115,7 +115,7 @@ namespace FamilyFinancesApp.Repository.SpendingRep
             return spending;
         }
 
-       /* public async Task<List<SpendingTypeChart>> GetSpendingChartAsync(int userInfoId)
+       public async Task<List<SpendingTypeChart>> GetSpendingChartAsync(int userInfoId)
         {
             var spendingTypes = await unitOfWork.SpendingType.GetAllSpendingTypesAsync(userInfoId);
 
@@ -132,6 +132,6 @@ namespace FamilyFinancesApp.Repository.SpendingRep
             }
 
             return spendingTypeChart;
-        }*/
+        }
     }
 }

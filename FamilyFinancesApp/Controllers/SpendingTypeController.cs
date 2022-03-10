@@ -23,7 +23,7 @@ namespace FamilyFinancesApp.Controllers
         {
             var userInfo = await _unitOfWork.UserInfo.GetUserInfoAsync(User.FindFirstValue(ClaimTypes.NameIdentifier)); 
 
-            var spendingTypes = await _unitOfWork.SpendingType.GetIncomeTypesAsync(userInfo.Id);
+            var spendingTypes = await _unitOfWork.SpendingType.GetAllSpendingTypesAsync(userInfo.Id);
 
             return View(spendingTypes);
         }
