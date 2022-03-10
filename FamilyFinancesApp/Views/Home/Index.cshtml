@@ -51,7 +51,7 @@
         $(function () {
             $.ajax({
                 type: 'GET',
-                url: '/Spending/GetSpendingChart',
+                url: '/Income/GetIncomeChart',
                 success: function (chartsdata) {
                     // Callback that creates and populates a data table,
                     // instantiates the pie chart, passes in the data and
@@ -61,12 +61,12 @@
                     var Data = chartsdata.jsonList;
                     var data = new google.visualization.DataTable();
 
-                    data.addColumn('string', 'SpendingTypeName');
-                    data.addColumn('number', 'SpendingCount');
+                    data.addColumn('string', 'IncomeTypeName');
+                    data.addColumn('number', 'IncomeCount');
 
                     //Loop through each list data
                     for (var i = 0; i < Data.length; i++) {
-                        data.addRow([Data[i].spendingTypeName, Data[i].spendingCount]);
+                        data.addRow([Data[i].incomeTypeName, Data[i].incomeCount]);
                     }
 
                     // Instantiate and draw our chart, passing in some options
@@ -75,7 +75,7 @@
                     //Draw pie chart command with data and chart options
                     chart.draw(data,
                         {
-                            title: "Google pie Chart in ASP.NET Core MVC",
+                            title: "Income chart by Income type",
                             position: "top",
                             fontsize: "14px",
                             is3D: true
@@ -124,7 +124,7 @@
                     //Draw pie chart command with data and chart options
                     chart.draw(data,
                         {
-                            title: "Income chart by Income type",
+                            title: "Spending chart by Spending type",
                             position: "top",
                             fontsize: "14px",
                             is3D: true
