@@ -2,14 +2,14 @@
 {
     public class IncomeTypeChart
     {
-        public IncomeTypeChart(string incomeTypeName, int incomeCount)
+        public IncomeTypeChart(string incomeTypeName, decimal incomeAmount)
         {
             IncomeTypeName = incomeTypeName;
-            IncomeCount = incomeCount;
+            IncomeCount = incomeAmount;
         }
 
         public string IncomeTypeName { get; set; }
 
-        public int IncomeCount { get; set; }
+        public decimal IncomeCount { get; set; }
     }
 }

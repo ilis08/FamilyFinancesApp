@@ -133,10 +133,18 @@ namespace FamilyFinancesApp.Controllers
             foreach (var item in incomeTypes)
             {
                 var incomes = await _unitOfWork.Income.GetAllIncomesByType(item.Id);
+                decimal amount = 0;
+
+                foreach(var income in incomes)
+                {
+
+                    
+                    amount += income.Amount;
+                }
 
                 if (incomes is not null)
                 {
-                    incomeTypeChart.Add(new IncomeTypeChart(item.TypeName, incomes.Count()));
+                    incomeTypeChart.Add(new IncomeTypeChart(item.TypeName, amount));
                 }
             }
 

@@ -124,6 +124,8 @@ namespace FamilyFinancesApp.Repository.IncomeRep
 
             var incomeTypeChart = new List<IncomeTypeChart>();
 
+
+
             foreach (var item in incomeTypes)
             {
                 var incomes = await unitOfWork.Income.GetAllIncomesByType(item.Id);
